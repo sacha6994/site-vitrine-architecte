@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <!-- Métadonnées de base pour le navigateur -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Site vitrine d'une coiffeuse indépendante : prestations, tarifs, galerie et prise de rendez-vous."
+    />
+    <title>Éclat & Élégance | Coiffeuse Indépendante</title>
+
+    <!-- Préconnexion pour optimiser le chargement des Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Typographies demandées : Playfair Display (titres) + Lato (texte) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome pour les icônes réseaux, téléphone et localisation -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWix+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkR4j8YvR6D3yYlWl6f3f1aT4xX6fQ4f4GQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Feuille de style principale -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ===== Header Sticky ===== -->
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <!-- Logo texte stylisé -->
+        <a href="#top" class="logo" aria-label="Retour en haut de la page">Éclat & Élégance</a>
+
+        <!-- Bouton burger visible uniquement sur mobile -->
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+          aria-controls="mainNav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Navigation principale -->
+        <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
+          <ul>
+            <li><a href="#a-propos">À Propos</a></li>
+            <li><a href="#prestations">Prestations</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#temoignages">Témoignages</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Bouton d'action principal -->
+        <a href="#" class="btn btn-primary header-cta">Prendre RDV</a>
+      </div>
+    </header>
+
+    <!-- ===== Contenu principal ===== -->
+    <main>
+      <!-- Hero avec image de fond immersive -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+          <p class="hero-kicker">Expertise & Bien-être</p>
+          <h1 id="hero-title">Sublimez votre style avec une coiffure sur mesure</h1>
+          <p>
+            Une parenthèse beauté dans une ambiance chic et relaxante, pour révéler toute
+            votre personnalité.
+          </p>
+          <div class="hero-actions">
+            <a href="#" class="btn btn-primary">Prendre RDV</a>
+            <a href="#prestations" class="btn btn-secondary">Découvrir les prestations</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section À Propos avec portrait circulaire -->
+      <section class="about section" id="a-propos" aria-labelledby="about-title">
+        <div class="container about-grid">
+          <figure class="about-photo-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80"
+              alt="Portrait de la coiffeuse"
+              class="about-photo"
+            />
+          </figure>
+          <div class="about-content">
+            <h2 id="about-title">À Propos</h2>
+            <p>
+              Passionnée par l'art du cheveu, j'accompagne chaque cliente avec écoute et
+              précision pour créer des looks élégants, actuels et faciles à vivre au quotidien.
+            </p>
+            <p>
+              Formée aux dernières techniques de coupe, coloration et balayage, je vous propose
+              une expérience personnalisée, centrée sur votre bien-être et la mise en valeur de
+              votre style.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prestations et tarifs sous forme de grille -->
+      <section class="services section" id="prestations" aria-labelledby="services-title">
+        <div class="container">
+          <h2 id="services-title">Prestations & Tarifs</h2>
+          <p class="section-intro">Des tarifs transparents, avec des prix indiqués à partir de.</p>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <h3>Coupe Femme</h3>
+              <ul>
+                <li><span>Shampoing + Coupe + Brushing</span><strong>à partir de 45€</strong></li>
+                <li><span>Brushing</span><strong>à partir de 25€</strong></li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <h3>Coloration</h3>
+              <ul>
+                <li><span>Coloration racines</span><strong>à partir de 55€</strong></li>
+                <li><span>Coloration complète</span><strong>à partir de 70€</strong></li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <h3>Balayage</h3>
+              <ul>
+                <li><span>Balayage naturel</span><strong>à partir de 80€</strong></li>
+                <li><span>Gloss / Patine</span><strong>à partir de 30€</strong></li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <h3>Homme</h3>
+              <ul>
+                <li><span>Coupe homme</span><strong>à partir de 25€</strong></li>
+                <li><span>Taille barbe</span><strong>à partir de 15€</strong></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Galerie d'inspirations coiffure -->
+      <section class="gallery section" id="galerie" aria-labelledby="gallery-title">
+        <div class="container">
+          <h2 id="gallery-title">Galerie</h2>
+          <div class="gallery-grid">
+            <img src="https://source.unsplash.com/600x700/?hairstyle,woman" alt="Inspiration coiffure 1" />
+            <img src="https://source.unsplash.com/600x750/?hair,salon" alt="Inspiration coiffure 2" />
+            <img src="https://source.unsplash.com/600x680/?hairdresser" alt="Inspiration coiffure 3" />
+            <img src="https://source.unsplash.com/600x710/?blonde,hair" alt="Inspiration coiffure 4" />
+            <img src="https://source.unsplash.com/600x730/?brunette,haircut" alt="Inspiration coiffure 5" />
+            <img src="https://source.unsplash.com/600x690/?beauty,hair" alt="Inspiration coiffure 6" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Témoignages clients -->
+      <section class="testimonials section" id="temoignages" aria-labelledby="testimonials-title">
+        <div class="container">
+          <h2 id="testimonials-title">Elles témoignent</h2>
+          <div class="testimonial-grid">
+            <article class="testimonial-card">
+              <div class="stars" aria-label="5 étoiles">★★★★★</div>
+              <p>
+                « Une vraie professionnelle ! Elle a parfaitement compris ce que je voulais. Je
+                ressors toujours ravie. »
+              </p>
+              <h3>— Claire M.</h3>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="stars" aria-label="5 étoiles">★★★★★</div>
+              <p>
+                « Ambiance douce, prestations de qualité et conseils personnalisés. Je recommande
+                les yeux fermés. »
+              </p>
+              <h3>— Sarah L.</h3>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="stars" aria-label="5 étoiles">★★★★★</div>
+              <p>
+                « Mon balayage est magnifique et tient super bien. Une adresse précieuse ! »
+              </p>
+              <h3>— Julie R.</h3>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== Footer / Contact ===== -->
+    <footer class="site-footer" id="contact">
+      <div class="container footer-grid">
+        <div>
+          <h2>Éclat & Élégance</h2>
+          <p><i class="fa-solid fa-location-dot"></i> 12 Rue des Lilas, 75011 Paris</p>
+          <p><i class="fa-solid fa-phone"></i> 06 12 34 56 78</p>
+        </div>
+
+        <div>
+          <h3>Horaires d'ouverture</h3>
+          <ul class="hours-list">
+            <li>Lundi : Fermé</li>
+            <li>Mardi - Vendredi : 9h00 - 19h00</li>
+            <li>Samedi : 9h00 - 17h00</li>
+            <li>Dimanche : Fermé</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Suivez-moi</h3>
+          <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Téléphone"><i class="fa-solid fa-phone"></i></a>
+            <a href="#" aria-label="Localisation"><i class="fa-solid fa-location-dot"></i></a>
+          </div>
+          <a href="#" class="legal-link">Mentions légales</a>
+        </div>
+      </div>
+      <p class="copyright">© 2026 Éclat & Élégance - Tous droits réservés.</p>
+    </footer>
+
+    <!-- Script JS uniquement pour le menu mobile -->
+    <script src="script.js"></script>
+  </body>
+</html>
