@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Laura - Coiffeuse indépendante premium. Coupe, coloration, balayage et expérience beauté luxe."
+    />
+    <title>Laura | Studio de Coiffure Premium</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --cream: #f9f7f2;
+        --charcoal: #2d2d2d;
+        --gold: #d4af37;
+        --soft-rose: #d8b3b8;
+        --white-glass: rgba(255, 255, 255, 0.45);
+        --shadow-soft: 0 24px 60px rgba(45, 45, 45, 0.09);
+        --radius-xl: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Manrope", sans-serif;
+        color: var(--charcoal);
+        background: var(--cream);
+        overflow-x: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: min(92%, 1180px);
+        margin-inline: auto;
+      }
+
+      /* Loader élégant */
+      .loader {
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(circle at 30% 20%, #fff, var(--cream));
+        transition: opacity 0.8s ease, visibility 0.8s ease;
+      }
+
+      .loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .loader-mark {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        letter-spacing: 0.08em;
+      }
+
+      .loader-mark em {
+        color: var(--gold);
+        font-style: italic;
+      }
+
+      /* Header glassmorphism */
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+      }
+
+      .nav-shell {
+        margin: 1rem auto 0;
+        width: min(95%, 1200px);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 999px;
+        background: rgba(249, 247, 242, 0.7);
+        backdrop-filter: blur(0px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: backdrop-filter 0.3s ease, background 0.3s ease, transform 0.3s ease;
+      }
+
+      .nav-shell.scrolled {
+        backdrop-filter: blur(12px);
+        background: rgba(249, 247, 242, 0.52);
+        transform: translateY(-2px);
+      }
+
+      .nav-inner {
+        min-height: 68px;
+        padding: 0 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.9rem;
+      }
+
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.22rem;
+        text-decoration: none;
+        color: var(--charcoal);
+        white-space: nowrap;
+      }
+
+      .logo em {
+        color: var(--gold);
+      }
+
+      .main-nav ul {
+        display: flex;
+        list-style: none;
+        gap: 1.2rem;
+      }
+
+      .main-nav a {
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--charcoal);
+        font-size: 0.92rem;
+      }
+
+      .main-nav a:hover {
+        color: var(--gold);
+      }
+
+      .menu-btn {
+        display: none;
+        border: none;
+        background: transparent;
+        width: 40px;
+      }
+
+      .menu-btn span {
+        display: block;
+        height: 3px;
+        margin: 5px 0;
+        background: var(--charcoal);
+        border-radius: 3px;
+      }
+
+      /* Boutons premium avec gradient animé */
+      .btn {
+        position: relative;
+        isolation: isolate;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: #1f1f1f;
+        padding: 0.85rem 1.5rem;
+        border-radius: 999px;
+        border: 1px solid rgba(212, 175, 55, 0.35);
+        overflow: hidden;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        inset: -180% -40%;
+        background: linear-gradient(115deg, #e9d58f 0%, #d4af37 40%, #d8b3b8 100%);
+        transform: translateX(-45%) rotate(10deg);
+        transition: transform 0.7s ease;
+        z-index: -1;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 28px rgba(212, 175, 55, 0.25);
+      }
+
+      .btn:hover::before {
+        transform: translateX(8%) rotate(10deg);
+      }
+
+      section {
+        padding: 5.5rem 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        line-height: 1.15;
+      }
+
+      /* Hero */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        color: #fff;
+        background: url("https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=2200&q=80") center/cover
+          no-repeat;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(24, 24, 24, 0.45), rgba(24, 24, 24, 0.72));
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        width: min(92%, 920px);
+      }
+
+      .hero-kicker {
+        text-transform: uppercase;
+        letter-spacing: 0.19em;
+        font-size: 0.78rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.2rem, 7vw, 6rem);
+        margin-bottom: 1rem;
+      }
+
+      .hero h1 em {
+        font-style: italic;
+        color: var(--soft-rose);
+      }
+
+      .hero p {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      .hero-actions {
+        margin-top: 1.8rem;
+        display: flex;
+        gap: 0.8rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* Intro */
+      .section-head {
+        margin-bottom: 2rem;
+      }
+
+      .section-head h2 {
+        font-size: clamp(1.8rem, 4vw, 3rem);
+      }
+
+      .section-head h2 em {
+        color: var(--gold);
+        font-style: italic;
+      }
+
+      .section-head p {
+        margin-top: 0.8rem;
+        max-width: 700px;
+      }
+
+      /* Services */
+      .services-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .service-card {
+        background: linear-gradient(160deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.58));
+        border: 1px solid rgba(212, 175, 55, 0.24);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-soft);
+        padding: 1.2rem;
+        transform-style: preserve-3d;
+        transition: transform 0.16s ease, box-shadow 0.3s ease;
+      }
+
+      .service-card:hover {
+        box-shadow: 0 30px 56px rgba(45, 45, 45, 0.13);
+      }
+
+      .service-top {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .service-icon {
+        width: 38px;
+        height: 38px;
+        color: var(--gold);
+      }
+
+      .service-card h3 {
+        font-size: 1.32rem;
+      }
+
+      .service-card ul {
+        list-style: none;
+      }
+
+      .service-card li {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.55rem 0;
+        border-bottom: 1px dashed rgba(45, 45, 45, 0.2);
+      }
+
+      .service-card li:last-child {
+        border-bottom: none;
+      }
+
+      /* Galerie masonry */
+      .gallery-grid {
+        columns: 2;
+        column-gap: 0.85rem;
+      }
+
+      .gallery-grid figure {
+        break-inside: avoid;
+        margin-bottom: 0.85rem;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .gallery-grid img {
+        width: 100%;
+        height: auto;
+      }
+
+      /* Témoignages */
+      .testimonials-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .testimonial {
+        background: rgba(255, 255, 255, 0.76);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-soft);
+        padding: 1.2rem;
+      }
+
+      .stars {
+        color: var(--gold);
+        margin-bottom: 0.7rem;
+        letter-spacing: 0.08em;
+      }
+
+      /* Footer */
+      footer {
+        padding: 4rem 0 2rem;
+        border-top: 1px solid rgba(45, 45, 45, 0.12);
+      }
+
+      .footer-wrap {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .footer-brand {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+      }
+
+      .footer-brand em {
+        color: var(--gold);
+      }
+
+      .footer-meta {
+        color: rgba(45, 45, 45, 0.8);
+      }
+
+      /* Scroll reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity 0.75s ease, transform 0.75s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (min-width: 860px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .gallery-grid {
+          columns: 3;
+        }
+
+        .testimonials-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .footer-wrap {
+          grid-template-columns: 1.4fr 1fr 1fr;
+          align-items: start;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .menu-btn {
+          display: block;
+        }
+
+        .main-nav {
+          display: none;
+          position: absolute;
+          top: calc(100% + 10px);
+          left: 0;
+          right: 0;
+          background: rgba(249, 247, 242, 0.96);
+          border: 1px solid rgba(45, 45, 45, 0.09);
+          border-radius: 20px;
+          padding: 1rem;
+          backdrop-filter: blur(8px);
+        }
+
+        .main-nav.open {
+          display: block;
+        }
+
+        .main-nav ul {
+          flex-direction: column;
+          gap: 0.7rem;
+        }
+
+        .header-cta {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader" id="loader" aria-hidden="true">
+      <p class="loader-mark">Laura <em>Studio</em></p>
+    </div>
+
+    <header class="site-header">
+      <div class="nav-shell" id="navShell">
+        <div class="nav-inner">
+          <a class="logo" href="#top">Laura <em>Studio</em></a>
+
+          <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav" aria-label="Menu mobile">
+            <span></span><span></span><span></span>
+          </button>
+
+          <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
+            <ul>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#galerie">Galerie</a></li>
+              <li><a href="#avis">Avis</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+
+          <a href="#" class="btn header-cta">Prendre RDV</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-content reveal">
+          <p class="hero-kicker">Expertise • Bien-être • Élégance</p>
+          <h1>La coiffure <em>haute couture</em> pensée pour vous</h1>
+          <p>
+            Bienvenue chez Laura, coiffeuse indépendante. Une expérience premium alliant écoute, technique et raffinement.
+          </p>
+          <div class="hero-actions">
+            <a href="#" class="btn">Prendre RDV</a>
+            <a href="#services" class="btn">Découvrir les services</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="container">
+        <div class="section-head reveal">
+          <h2>Prestations <em>& Tarifs</em></h2>
+          <p>Des rituels personnalisés, pensés pour magnifier votre identité avec subtilité.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal tilt-card">
+            <div class="service-top">
+              <svg class="service-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7c2.5 2 5 2 7.5 0M13.5 7c2.5 2 5 2 7.5 0M7 10l4 11M17 10l-4 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              <h3>Coupe Signature</h3>
+            </div>
+            <ul>
+              <li><span>Diagnostic + Coupe + Coiffage</span><strong>à partir de 60€</strong></li>
+              <li><span>Rituel soin profond</span><strong>à partir de 28€</strong></li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal tilt-card">
+            <div class="service-top">
+              <svg class="service-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h12v6H6zM9 10v10M15 10v10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              <h3>Coloration Luxe</h3>
+            </div>
+            <ul>
+              <li><span>Coloration racines premium</span><strong>à partir de 72€</strong></li>
+              <li><span>Coloration complète</span><strong>à partir de 95€</strong></li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal tilt-card">
+            <div class="service-top">
+              <svg class="service-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M6 12h12M8 18h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              <h3>Balayage Couture</h3>
+            </div>
+            <ul>
+              <li><span>Balayage naturel</span><strong>à partir de 115€</strong></li>
+              <li><span>Patine gloss lumière</span><strong>à partir de 36€</strong></li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal tilt-card">
+            <div class="service-top">
+              <svg class="service-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 20h14M8 4h8l2 6H6z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              <h3>Homme & Barbe</h3>
+            </div>
+            <ul>
+              <li><span>Coupe homme</span><strong>à partir de 35€</strong></li>
+              <li><span>Taille barbe experte</span><strong>à partir de 22€</strong></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="galerie" class="container">
+        <div class="section-head reveal">
+          <h2>Galerie <em>Inspiration</em></h2>
+          <p>Une mosaïque vivante de transformations et d'instants beauté signés Laura.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="reveal"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80" alt="Coiffure élégante cheveux longs" /></figure>
+          <figure class="reveal"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80" alt="Portrait studio coiffure premium" /></figure>
+          <figure class="reveal"><img src="https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?auto=format&fit=crop&w=900&q=80" alt="Balayage lumineux" /></figure>
+          <figure class="reveal"><img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=900&q=80" alt="Coiffage glamour en salon" /></figure>
+          <figure class="reveal"><img src="https://images.unsplash.com/photo-1523263685509-57c1d050d19b?auto=format&fit=crop&w=900&q=80" alt="Coupe moderne femme" /></figure>
+          <figure class="reveal"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=900&q=80" alt="Mise en beauté coiffure" /></figure>
+        </div>
+      </section>
+
+      <section id="avis" class="container">
+        <div class="section-head reveal">
+          <h2>Elles ont adoré l'expérience <em>Laura</em></h2>
+        </div>
+        <div class="testimonials-grid">
+          <article class="testimonial reveal">
+            <p class="stars" aria-label="5 étoiles">★★★★★</p>
+            <p>« Un vrai moment de luxe et de douceur. Coupe sublime, tenue parfaite pendant des semaines. »</p>
+            <h3>— Élodie R.</h3>
+          </article>
+          <article class="testimonial reveal">
+            <p class="stars" aria-label="5 étoiles">★★★★★</p>
+            <p>« Laura a un œil incroyable pour les nuances. Mon balayage est lumineux et ultra naturel. »</p>
+            <h3>— Camille D.</h3>
+          </article>
+          <article class="testimonial reveal">
+            <p class="stars" aria-label="5 étoiles">★★★★★</p>
+            <p>« Studio chic, accueil impeccable, conseils experts. Une signature beauté d'exception. »</p>
+            <h3>— Sarah M.</h3>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="container footer-wrap reveal">
+        <div>
+          <p class="footer-brand">Laura <em>Studio</em></p>
+          <p class="footer-meta">12 Rue des Lilas, 75011 Paris<br />Mardi–Vendredi 9h–19h • Samedi 9h–17h</p>
+        </div>
+        <div>
+          <p class="footer-meta">Tél. 06 12 34 56 78</p>
+          <p class="footer-meta">Instagram: @laura.studio</p>
+        </div>
+        <div>
+          <a href="#" class="btn">Prendre RDV</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Loader : disparition en fondu une fois la page prête
+      window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
+        if (loader) {
+          loader.classList.add("hidden");
+        }
+      });
+
+      // Menu mobile + effet glassmorphism au scroll
+      const menuBtn = document.getElementById("menuBtn");
+      const mainNav = document.getElementById("mainNav");
+      const navShell = document.getElementById("navShell");
+
+      if (menuBtn && mainNav) {
+        menuBtn.addEventListener("click", () => {
+          const expanded = menuBtn.getAttribute("aria-expanded") === "true";
+          menuBtn.setAttribute("aria-expanded", String(!expanded));
+          mainNav.classList.toggle("open");
+        });
+
+        mainNav.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            mainNav.classList.remove("open");
+            menuBtn.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      window.addEventListener("scroll", () => {
+        if (!navShell) return;
+        navShell.classList.toggle("scrolled", window.scrollY > 18);
+      });
+
+      // Scroll reveal avec IntersectionObserver
+      const revealElements = document.querySelectorAll(".reveal");
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.18 }
+      );
+
+      revealElements.forEach((element) => revealObserver.observe(element));
+
+      // Effet 3D tilt sur les cartes de services
+      document.querySelectorAll(".tilt-card").forEach((card) => {
+        card.addEventListener("mousemove", (event) => {
+          const bounds = card.getBoundingClientRect();
+          const x = event.clientX - bounds.left;
+          const y = event.clientY - bounds.top;
+          const rotateY = ((x / bounds.width) - 0.5) * 10;
+          const rotateX = ((y / bounds.height) - 0.5) * -10;
+          card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)";
+        });
+      });
+    </script>
+  </body>
+</html>
