@@ -7,7 +7,7 @@
       name="description"
       content="Laura - Coiffeuse indépendante premium. Coupe, coloration, balayage et expérience beauté luxe."
     />
-    <title>Laura | Studio de Coiffure Premium</title>
+    <title>Laura Studio | Coiffure Luxe Premium</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -196,6 +196,12 @@
 
       .btn:hover::before {
         transform: translateX(8%) rotate(10deg);
+      }
+
+      .btn:focus-visible,
+      .main-nav a:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
       }
 
       section {
